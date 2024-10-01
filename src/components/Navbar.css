@@ -1,0 +1,75 @@
+#nav {
+    background-color: rgba(40, 44, 52, 0.9); /* Fundo escuro com transparência */
+    height: 60px; /* Altura fixa da navbar */
+    display: flex; /* Usar flex para alinhar conteúdos */
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+    justify-content: space-between; /* Espaça os itens entre si */
+    padding: 0 2rem; /* Padding horizontal para afastar dos limites */
+}
+
+.logo {
+    width: 155px;    /* Largura da logo */
+    height: 40px;    /* Altura da logo */
+    object-fit: contain; /* Mantém a proporção da imagem */
+    margin-left: 2rem; /* Margem à esquerda, se necessário */
+    margin-right: 1rem; /* Margem à direita, se necessário */
+}
+
+
+#nav-links {
+    list-style: none; /* Remove marcadores da lista */
+    display: flex;
+    justify-content: flex-end; /* Alinha os links à direita */
+    padding: 0;
+    margin: 0;
+    height: 100%; /* Garante que os links ocupem toda a altura da navbar */
+    align-items: center; /* Centraliza verticalmente os links */
+}
+
+#nav-links li {
+    margin-left: 1.5rem; /* Espaçamento entre os links */
+    margin-right: 1rem; /* Margem à direita dos links para afastar da borda */
+}
+
+#nav-links a {
+    text-decoration: none; /* Remove sublinhado */
+    color: #F5F9FF; /* Cor dos links */
+    padding: 0.5rem 1rem; /* Ajuste o espaçamento interno dos links */
+    border-radius: 5px; /* Bordas arredondadas */
+    transition: background-color 0.3s, transform 0.2s; /* Transição suave para o efeito hover */
+}
+
+/* Efeito hover nos links */
+#nav-links a:hover {
+    transform: scale(1.05); /* Leve aumento ao passar o mouse */
+}
+
+#enter {
+    #enter {
+        margin-left: 0; /* Remover margens à esquerda para alinhamento */
+    }
+}
+
+#enter a {
+    background-color: #686275; /* Cor do botão */
+    color: #F5F9FF; /* Texto claro */
+    padding: 0.5rem 1rem; /* Espaçamento interno do botão */
+    border-radius: 5px; /* Bordas arredondadas */
+    transition: background-color 0.2s; /* Transição suave */
+}
+
+/* Efeito hover no botão "Entrar" */
+#enter a:hover {
+    background-color: #8F7F96; /* Efeito hover */
+}
+
+@media (max-width: 768px) {
+    #nav {
+        padding: 0 1rem; /* Reduzir o padding em telas menores */
+    }
+
+    .logo {
+        width: 120px; /* Ajustar a largura da logo em telas menores */
+        height: auto; /* Manter a proporção */
+    }
+}

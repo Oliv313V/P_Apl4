@@ -1,0 +1,49 @@
+.user-list-container {
+    background: rgba(40, 44, 52, 0.9);
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 600px; /* Largura máxima do container */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    color: #F5F9FF;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.user-list {
+    list-style-type: none; /* Remove os marcadores da lista */
+    padding: 0; /* Remove o padding */
+}
+
+.user-list li {
+    background: rgba(255, 255, 255, 0.1); /* Fundo levemente transparente */
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    display: flex;
+    justify-content: space-between; /* Espaça nome e botões */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+button {
+    background-color: #BA9CB5; /* Cor do botão */
+    color: #F5F9FF;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem; /* Padding interno do botão */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #E7BAD1; /* Efeito hover */
+}
+
+.error-message {
+    color: #FF3D3D; /* Cor da mensagem de erro */
+    text-align: center;
+    margin-top: 1rem;
+}

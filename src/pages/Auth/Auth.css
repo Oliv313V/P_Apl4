@@ -1,0 +1,77 @@
+/* Estilos globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #282C34, #686275, #8F7F96, #E7BAD1);
+    color: #F5F9FF;
+}
+
+/* Estilos do contêiner do login */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-form {
+    background: rgba(40, 44, 52, 0.9);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    width: 400px;
+}
+
+.login-form .input-field .icon {
+    position: absolute;
+    right: 10px; /* Alinha o ícone à direita */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #F5F9FF; /* Cor do ícone */
+    pointer-events: none; /* Para que o ícone não interfira na interação com o input */
+}
+
+/* Estilos para o formulário de login */
+.login-form .input-field {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.login-form .input-field input {
+    width: 100%;
+    padding: 1rem; /* Usando padding consistente */
+    border: 1px solid #E7BAD1; /* Cor da borda do login */
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #F5F9FF; /* Texto claro */
+}
+
+.login-form .input-field input:focus {
+    border-color: #8F7F96; /* Cor da borda ao focar */
+    outline: none; /* Remove contorno padrão */
+}
+
+.login-form button {
+    width: 100%;
+    padding: 1rem;
+    background-color: #686275; /* Cor do botão de login */
+    color: #F5F9FF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.login-form button:hover {
+    background-color: #8F7F96; /* Efeito hover */
+}

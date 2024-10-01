@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    margin-bottom: 0; /* Remove margem inferior */
+    padding-bottom: 0; /* Remove padding inferior */
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    /* ajuste para que não dependa do footer */
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #F5F9FF;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.active {
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+ label span {
+     font-weight: bold;
+     margin-bottom: 0.5em;
+     color: gray;
+     font-size: .7em;
+ }
+
+ input {
+     background-color: white;
+     color: #1E1926;
+     border: 1px solid #1E1926;
+     padding: 12px 10px;
+     border-radius: 2px;
+     outline: none;
+     margin-bottom: .6em;
+ }
+
+ input::placeholder {
+     color: #EFEFEF;
+ }
+
+ .btn,
+ button,
+ input [type="submit"] {
+     background-color: #8F7F96;
+     color: #F5F9FF;
+     border: none;
+     border-radius: 4px;
+     padding: 10px 8px;
+     font-weight: bold;
+     cursor: pointer;
+     opacity:0.8;
+     font-size: 1em;
+ }
+
+ input[type=submit] {
+     margin-top: 1em;
+     color: #BA9CB5;
+ }
+
+ input:disabled {
+     cursor: not-allowed;
+     background-color: #eee;
+ }
+
+ button:hover,
+ input[type="submit"]:hover {
+     opacity: 1;
+     background: #8F7F96;
+ }
+
+ .cancel-btn {
+     background-color: #1E1926;
+ }
+
+ .hide {
+     display: none;
+ }

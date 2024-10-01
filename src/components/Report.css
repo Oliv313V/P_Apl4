@@ -1,0 +1,40 @@
+.report-container {
+    margin: 20px;
+    font-family: Roboto, sans-serif;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) ;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-size: 1.2em;
+}
+
+/*Estilo de linhas da tabela */
+tr:nth-child(even) {
+background-color: #f9f9f9;  /*cor de fundo das linhas pares*/
+}
+
+tr:hover {
+    background-color: #e1f5fe;
+}
+
+/* estilização para mensagem de dados indisponíveis */
+.no-data {
+    text-align: center;
+    margin: 20px;
+    font-size: 1.5em;
+    color: #666;
+    font-weight: bold; /* destaca a mensagem */
+}
+
+

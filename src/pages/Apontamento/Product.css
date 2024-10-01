@@ -1,0 +1,100 @@
+#product {
+    padding: 1rem;
+    background-color: rgba(228, 228, 228, 0.9);
+    border-radius: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    color: #282C34; /* Texto escuro */
+    min-height: 100vh; /* Garante que o contêiner cubra toda a altura da tela */
+    display: flex; /* Usar flexbox para o layout */
+    flex-direction: column; /* Organiza os itens verticalmente */
+    justify-content: flex-start; /* Inicia o conteúdo no topo */
+    position: relative;
+}
+
+.product-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Espaçamento entre os itens */
+}
+
+.product-container h2 {
+    color: #282C34; /* Cor para o h2 */
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.product-subtitle {
+    text-align: left;
+    margin-bottom: 1rem;
+    color: #282C34; /* Cor para o subtítulo */
+}
+
+.product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Espaçamento entre os inputs */
+}
+
+.product-form label {
+    color: #282C34; /* Cor dos rótulos */
+}
+
+.product-form input {
+    width: 400px; /* Garante que todos os inputs tenham a mesma largura */
+    padding: 0.75rem; /* Padding padrão */
+    border: 1px solid #BA9CB5; /* Borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    background: rgba(255, 255, 255, 0.1); /* Fundo claro */
+    color: #282C34; /* Cor do texto */
+}
+
+.product-form button {
+    padding: 0.75rem;
+    color: black;
+    background-color: #8F7F96;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.6s;
+    font-weight: bold;
+    font-size: 1.2rem;
+    width: 400px;
+}
+
+.product-form button:hover {
+    background-color: #BA9CB5; /* Efeito hover */
+}
+
+.productsIn-container h3 {
+    text-align: left;
+    margin-top: 2rem; /* Ajuste este valor conforme necessário */
+    margin-bottom: 2.5rem; /* Mantém o espaço abaixo do h3 */
+}
+
+ul {
+    list-style-type: none; /* Remove marcadores de lista */
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between; /* Distribui espaço entre o nome e os botões */
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+button {
+    background-color: #d9534f; /* Cor para botões de excluir */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #c9302c; /* Efeito hover para excluir */
+}

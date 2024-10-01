@@ -1,0 +1,23 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Ocupa toda a altura da tela */
+    text-align: center;
+    background: #282C34;
+    color: #F5F9FF; /* Texto claro */
+}
+
+.home-container h1 {
+    margin-bottom: 1rem;
+}
+
+.home-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.home-container li {
+    margin: 0.5rem 0;
+}
