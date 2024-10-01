@@ -18,11 +18,10 @@ cd front_v2
 
 2.2- npm-v
 
-4- se estiver tudo ok:
-
-5- instalar as dependências - npm install 
+3- se estiver tudo ok:
+4- instalar as dependências - npm install 
 ( as dependências necessárias estão dentro do package.json)
 
-6- npm run dev
+5- npm run dev
 
-7- deve abrir em http://localhost:5173
+6- deve abrir em http://localhost:5173
