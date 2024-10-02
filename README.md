@@ -1,27 +1,50 @@
-# React + Vite
+# Projeto Aplicado IV
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descrição do Projeto
 
-Currently, two official plugins are available:
+Projeto desenvolvido para a disciplina de Projeto Aplicado IV, do curso de Analise e Desenvolvimento de Sistemas do UniSENAI.
+A aplicação consiste em um sistema de apontamento de relatórios d eprodução e gerenciamento do mesmo para uma fabrica de lactnicos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
+## Integrantes
+
+ - Evandro Alves
+ - Gilson Langa
+ - Vitória
+ - Lucas Jose de Paula
+
+## Tecnologias Utilizadas
+- Javascript
+- Vite
+
+## Como rodar o projeto
+
+### Pré-requisitos
+
+- Ter node instalado na máquina, site ofificial para download do [Node](https://nodejs.org/en/download/package-manager)
+- Ter npm instalado na máquina.
 
 1- clonar o repositório na sua máquina e acessar a pasta do projeto no terminal: 
 
-cd front_v2
+~~~javascript
+cd "caminho da pasta onde salvou o projeto", exemplo: cd front_V2.
+~~~~
 
 2 - No terminal -  verificar as versões disponíveis:
 
-2.1- node-v
+    2.1- node-v
 
-2.2- npm-v
+    2.2- npm-v
 
-3- se estiver tudo ok:
-4- instalar as dependências - npm install 
+3 - Se estiver tudo ok:
+
+    3.1 - Instalar as dependências - npm install 
 ( as dependências necessárias estão dentro do package.json)
 
-5- npm run dev
+### Rodar o projeto
 
-6- deve abrir em http://localhost:5173
+~~~javascript
+npm run dev
+~~~
+
+1 - deve abrir em http://localhost:5173, caso deseje altear a porta padrão vá até o caminho src/utils/config.jsx e altere a variavel **api**.
