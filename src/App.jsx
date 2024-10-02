@@ -15,11 +15,11 @@ import Navbar from "./components/Navbar";
 //pages
 import Home from "./pages/Home/Home";
 import Login from "./pages/Auth/Login";
-//import UserList from './pages/Admin/UserList.jsx';
+// import Usuario from './pages/Admin/UserList.jsx';
 //import Report from './components/Report';
 import Admin from "./pages/Admin/Admin.jsx";
 import Produto from "./pages/Apontamento/Product.jsx";
-import Production from "./pages/Apontamento/Production.jsx";
+import Producao from "./pages/Apontamento/Production.jsx";
 
 
 function App()  {
@@ -53,7 +53,7 @@ function App() {
                         <Route path="/admin" element={<Admin />} />
                         <Route path="/UserList" element={<Admin />} />
                         <Route path="/produto" element={<Produto />} />
-                        <Route path="/producao" element={<Production />} />
+                        <Route path="/producao" element={<Producao />} />
 
                         {/* <Route path="/" element={auth ? <Home /> : <Navigate to="/login" />} />
                         <Route path="/login" element={!auth ? <Login /> : <Navigate to="/" />} />
