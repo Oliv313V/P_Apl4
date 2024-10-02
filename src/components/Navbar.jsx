@@ -36,7 +36,7 @@ const Navbar = () => {
 
     return (
         <nav id="nav">
-            <img src={logo}  alt="EffiNOTE 4.0" className="logo"/>
+            <img src={logo}  alt="Itambé" className="logo"/>
             <ul id="nav-links">
                 {auth ? (
                     <>
