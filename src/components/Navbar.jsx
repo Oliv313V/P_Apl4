@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import logo from '../assets/images/logo.png';
+import logo from '../assets/images/logo_itambe.png';
 
 //Components
 import { NavLink , Link } from "react-router-dom";
