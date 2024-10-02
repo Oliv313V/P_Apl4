@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Eye, EyeOff } from 'lucide-react';
 
-
-import { fetchUsers} from "../../slices/adminSlice.jsx";
+import { fetchUsers } from "../../slices/adminSlice.jsx";
 import { reset } from "../../slices/authSlice.jsx";
-import { updateUser} from "../../slices/adminSlice.jsx";
+import { updateUser } from "../../slices/adminSlice.jsx";
 import { deleteUser } from "../../slices/adminSlice.jsx";
 
 import { register } from "../../slices/adminSlice.jsx";
 import Message from "../../components/Message";
 
 import './Admin.css';
-
 
 const Admin = () => {
     const [name, setName] = useState("");
@@ -79,23 +78,33 @@ const Admin = () => {
         setConfirmPassword("");
     };
 
+    const [isShow, setIsShow] = useState(false)
+
+    const handlepassword = () => setIsShow(!isShow)
+
     return (
 
         <div id="gerenciar">
             <div className="formulario-cadastro">
                 <h2>Admin - Cadastramento de usuários </h2>
                 <p className="subtitle">{editMode ? "Editar Usuário" : "Insira credenciais para um novo usuário"}</p>
-                    <div className="form-group">
-                        <form onSubmit={handleSubmit}>
-                            <input type="text" placeholder="Nome" onChange={(e) => setName(e.target.value)} value={name} required />
-                            <input type="text" placeholder="Tipo" onChange={(e) => setTipo(e.target.value)} value={tipo} required />
-                            <input type="password" placeholder="Senha" onChange={(e) => setPassword(e.target.value)} value={password} required />
-                            <input type="password" placeholder="Confirmar senha" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} required />
-                            <input type="submit" value={editMode ? "Atualizar" : "Cadastrar"} disabled={loading} />
-                            {loading && <p>Processando...</p>}
-                            {error && <Message msg={error} type="error" />}
-                        </form>
-                    </div>
+                <div className="form-group">
+                    <form onSubmit={handleSubmit}>
+                        <input type="text" placeholder="Nome" onChange={(e) => setName(e.target.value)} value={name} required />
+                        <input type="text" placeholder="Tipo" onChange={(e) => setTipo(e.target.value)} value={tipo} required />
+                        <label>
+                            <input type={isShow ? "text" : "password"} placeholder="Senha" onChange={(e) => setPassword(e.target.value)} value={password} required />                            
+                            <button onClick={handlepassword}>
+                                {isShow && <EyeOff size={18} />}
+                                {!isShow && <Eye size={18} />}
+                            </button>
+                        </label>
+                        <input type="password" placeholder="Confirmar senha" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} required />
+                        <input type="submit" value={editMode ? "Atualizar" : "Cadastrar"} disabled={loading} />
+                        {loading && <p>Processando...</p>}
+                        {error && <Message msg={error} type="error" />}
+                    </form>
+                </div>
             </div>
 
             <div className="users-container">
