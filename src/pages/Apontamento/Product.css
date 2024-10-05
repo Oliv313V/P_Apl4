@@ -8,7 +8,9 @@
     display: flex; /* Usar flexbox para o layout */
     flex-direction: column; /* Organiza os itens verticalmente */
     justify-content: flex-start; /* Inicia o conteúdo no topo */
+    align-items: center; /* Centraliza os itens horizontalmente */
     position: relative;
+    
 }
 
 .product-container {
