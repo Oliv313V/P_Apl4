@@ -60,20 +60,24 @@ label {
  }
 
  input {
-     background-color: white;
-     color: #1E1926;
+     background-color: #282C34;
+     color: #F5F9FF;
      border: 1px solid #1E1926;
      padding: 12px 10px;
      border-radius: 2px;
      outline: none;
      margin-bottom: .6em;
+     caret-color: #F5F9FF;
  }
 
  input::placeholder {
      color: #EFEFEF;
  }
 
- .btn,
+.btn {
+    background-color: transparent;
+}
+
  button,
  input [type="submit"] {
      background-color: #8F7F96;

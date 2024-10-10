@@ -2,9 +2,10 @@ import "./Auth.css";
 
 import axios from "axios";
 
-import { useState } from "react";
-import { FaUser, FaLock } from "react-icons/fa";
+import { useState} from "react";//para ter um local para salvar os dados
 import {useAuth} from "../../hooks/useAuth.jsx";
+
+import { FaUser, FaLock } from "react-icons/fa";
 
 
 const Login = () => {
@@ -46,9 +47,11 @@ const Login = () => {
             <form  className="login-form" onSubmit={handleSubmit}>
                 <h1>Acesso ao sistema</h1>
                 <div className="input-field">
+                    <label>
                     <input type="text"  placeholder="Usuário"
                            onChange={(e) => setUserName(e.target.value)} required={true}/>
                     <FaUser className="icon"/>
+                    </label>
                 </div>
                 <div className="input-field">
                     <input type="password"  placeholder="Senha"

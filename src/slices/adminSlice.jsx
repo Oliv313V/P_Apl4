@@ -8,8 +8,8 @@ export const fetchUsers = createAsyncThunk(
         return await  adminService.fetchUsers();
     });
 
-export const register = createAsyncThunk(
-    "users/register", async ( userData ) => {
+export const createUser = createAsyncThunk(
+    "users/create", async ( userData ) => {
    return await adminService.createUser(userData);
 });
 
@@ -51,7 +51,7 @@ const adminSlice = createSlice ({
                     state.status = 'failed';
                     state.error = action.payload;
                 })
-            .addCase(register.fulfilled, (state, action) => {
+            .addCase(createUser.fulfilled, (state, action) => {
             state.users.push(action.payload);
         })
             .addCase(updateUser.fulfilled, (state, action) => {

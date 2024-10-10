@@ -19,7 +19,7 @@
 #nav-links {
     list-style: none; /* Remove marcadores da lista */
     display: flex;
-    justify-content: flex-end; /* Alinha os links à direita */
+    justify-content: flex-start; /* Alinha os links à direita */
     padding: 0;
     margin: 0;
     height: 100%; /* Garante que os links ocupem toda a altura da navbar */
@@ -29,6 +29,7 @@
 #nav-links li {
     margin-left: 1.5rem; /* Espaçamento entre os links */
     margin-right: 1rem; /* Margem à direita dos links para afastar da borda */
+    background-color: transparent;
 }
 
 #nav-links a {

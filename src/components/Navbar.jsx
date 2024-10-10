@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import logo from '../assets/images/logo.png';
+//import logo from '../assets/images/logo.png';
 
 //Components
 import { NavLink , Link } from "react-router-dom";
@@ -36,13 +36,12 @@ const Navbar = () => {
 
     return (
         <nav id="nav">
-            <img src={logo}  alt="EffiNOTE 4.0" className="logo"/>
             <ul id="nav-links">
                 {auth ? (
                     <>
                         <li>
                             <NavLink to="/" className={({isActive}) => (isActive ? 'active' : '')}>
-                                <BsFillHouseDoorFill/> Home
+                                <BsFillHouseDoorFill /> Home
                             </NavLink>
                         </li>
                         <li>

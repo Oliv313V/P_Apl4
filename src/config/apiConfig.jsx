@@ -1,7 +1,8 @@
 {/* Podemos testar esse modo com axios também*/}
-  import axios from 'axios';
+import axios from 'axios';
 
-const api = axios.create({
-    baseURL: 'http://localhost:5000/api',   // trocar pela base do backend
+const apiConfig = axios.create({
+    baseURL: 'http://localhost:8080',   // trocar pela base do backend correto
 });
-export default api;
+export default apiConfig;
+

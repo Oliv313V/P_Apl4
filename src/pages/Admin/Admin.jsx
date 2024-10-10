@@ -1,33 +1,32 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
-
-import { fetchUsers} from "../../slices/adminSlice.jsx";
+import { fetchUsers, createUser, updateUser, deleteUser } from "../../slices/adminSlice.jsx";
 import { reset } from "../../slices/authSlice.jsx";
-import { updateUser} from "../../slices/adminSlice.jsx";
-import { deleteUser } from "../../slices/adminSlice.jsx";
-
-import { register } from "../../slices/adminSlice.jsx";
 import Message from "../../components/Message";
-
 import './Admin.css';
-
 
 const Admin = () => {
     const [name, setName] = useState("");
     const [tipo, setTipo] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const [confirmPassword, setConfirmPassword] = useState("");
     const [editMode, setEditMode] = useState(false);
     const [currentUserId, setCurrentUserId] = useState(null);
 
     const dispatch = useDispatch();
     const { loading, error } = useSelector((state) => state.auth);
-    const users = useSelector((state) => state.admin.users); // Selecionando a lista de usuários do slice
+    const users = useSelector((state) => state.admin.users); // Seleciona a lista de usuários do slice
 
     useEffect(() => {
         const loadUsers = async () => {
-            await dispatch(fetchUsers());
+            try {
+                await dispatch(fetchUsers()); // O fetchUsers já atualiza o estado global
+            } catch (error) {
+                console.error("Erro ao carregar usuários:", error);
+            }
         };
         loadUsers();
         dispatch(reset());
@@ -52,7 +51,7 @@ const Admin = () => {
             });
         } else {
             // Criar novo usuário
-            dispatch(register(user)).then(() => {
+            dispatch(createUser(user)).then(() => {
                 resetForm();
             });
         }
@@ -67,8 +66,7 @@ const Admin = () => {
 
     const handleDelete = (id) => {
         dispatch(deleteUser(id)).then(() => {
-            // Recarregar a lista de usuários
-            dispatch(fetchUsers());
+            dispatch(fetchUsers()); // Recarregar a lista de usuários após a exclusão
         });
     };
 
@@ -79,26 +77,71 @@ const Admin = () => {
         setConfirmPassword("");
     };
 
-    return (
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
+    return (
         <div id="gerenciar">
-            <div className="formulario-cadastro">
-                <h2>Admin - Cadastramento de usuários </h2>
+            <div className="container-form">
+                <h2>Admin <br /> Cadastramento de usuários</h2>
                 <p className="subtitle">{editMode ? "Editar Usuário" : "Insira credenciais para um novo usuário"}</p>
-                    <div className="form-group">
-                        <form onSubmit={handleSubmit}>
-                            <input type="text" placeholder="Nome" onChange={(e) => setName(e.target.value)} value={name} required />
-                            <input type="text" placeholder="Tipo" onChange={(e) => setTipo(e.target.value)} value={tipo} required />
-                            <input type="password" placeholder="Senha" onChange={(e) => setPassword(e.target.value)} value={password} required />
-                            <input type="password" placeholder="Confirmar senha" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} required />
-                            <input type="submit" value={editMode ? "Atualizar" : "Cadastrar"} disabled={loading} />
-                            {loading && <p>Processando...</p>}
-                            {error && <Message msg={error} type="error" />}
-                        </form>
+                <form onSubmit={handleSubmit}>
+                    <div className="input-field">
+                        <label>
+                            <span>Nome:</span>
+                            <input
+                                type="text"
+                                placeholder="Nome"
+                                onChange={(e) => setName(e.target.value)}
+                                value={name}
+                                required
+                            />
+                        </label>
+                        <label>
+                            <span>Tipo:</span>
+                            <select name="tipo"
+                                    onChange={(e) => setTipo(e.target.value)}
+                                    value={tipo}
+                            >
+                                <option value="user">Usuário</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </label>
+                        <label>
+                            <span>Senha:</span>
+                            <div className="input-wrapper">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    placeholder="Senha"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    value={password}
+                                    required
+                                />
+                                <button className="eye" type="button" onClick={togglePasswordVisibility}>
+                                    {showPassword ? <FaEyeSlash className="icon" /> : <FaEye className="icon" />}
+                                </button>
+                            </div>
+                        </label>
+                        <label>
+                            <span>Confirmar senha:</span>
+                            <input
+                                type="password"
+                                placeholder="Confirmar senha"
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                value={confirmPassword}
+                                required
+                            />
+                        </label>
+
+                        <input type="submit" value={editMode ? "Atualizar" : "Cadastrar"} disabled={loading} />
+                        {loading && <p>Processando...</p>}
+                        {error && <Message msg={error} type="error" />}
                     </div>
+                </form>
             </div>
 
-            <div className="users-container">
+            <div>
                 <h3>Conferir usuários cadastrados</h3>
                 <ul>
                     {users.map(user => (
@@ -115,3 +158,4 @@ const Admin = () => {
 };
 
 export default Admin;
+

@@ -1,5 +1,5 @@
-export const api = "http://localhost:5173/api";
-//precisa inserir o endereço certo
+export const api = "http://localhost:8080";
+//precisa inserir/ confirmar o endereço certo
 
 export const requestConfig = (method, data, token = null, task = null ) => {
     let config
@@ -8,7 +8,9 @@ export const requestConfig = (method, data, token = null, task = null ) => {
         config = {
             method,
             body:data,
-            headers:{}
+            headers:{
+                "Content-Type": "application/json"
+            },
         }
     }else if(method ==="DELETE" || data === null) {
         config = {
@@ -36,7 +38,7 @@ export const requestConfig = (method, data, token = null, task = null ) => {
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:5000/api', // trocar pela base do backend
+    baseURL: 'http://localhost:8080/api', // trocar pela base do backend
 });
 export default api;
 */}

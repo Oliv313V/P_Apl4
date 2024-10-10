@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import productionService from "../../services/productionService.jsx";
 import reportService from "../../services/reportService.jsx";
@@ -47,7 +46,7 @@ const Production = () => {
     const fetchReports = async () => {
         try {
             const reportData = await reportService.getReports();
-            return reportData;
+            return (reportData);
         } catch (error) {
             console.error("Erro ao buscar relatórios", error);
             throw error;
