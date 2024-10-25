@@ -1,19 +1,20 @@
 import{api, requestConfig} from "../utils/config.jsx";
+import baseURL from '../config/apiConfig.jsx';
 
 
 //Registrar usuário no sistema
 const fetchUsers = async () => {
 
-    const response = await fetch(api+'/users');
+    const response = await fetch(baseURL+'/users');
     if(!response.ok) {
-    throw new Error('Erro ao buscar usuários');
+        throw new Error('Erro ao buscar usuários');
     }
     return await response.json();
 };
 
 const createUser = async (userData) => {
     const config = requestConfig("POST", userData);
-    const response = await fetch(api + '/users/', config);
+    const response = await fetch(config, baseURL + '/user');
     if(!response.ok) {
         throw new Error( 'Erro ao buscar usuário');
     }
@@ -22,7 +23,7 @@ const createUser = async (userData) => {
 
 const updateUser = async (id, userData) => {
     const config = requestConfig("PUT", userData);
-    const response = await fetch(`${api}/users/${id}`, config);
+    const response = await fetch(`${baseURL}/user/${id}`, config);
     if(!response.ok) {
         throw new Error('Erro ao atualizar usuário');
     }
@@ -31,7 +32,7 @@ const updateUser = async (id, userData) => {
 
 const deleteUser = async (id) => {
     const config = requestConfig("DELETE", id);
-    const response = await fetch(`${api}/users/${id}`, config);
+    const response = await fetch(`${baseURL}/user/${id}`, config);
     if(!response.ok) {
         throw new Error('Erro ao excluir usuário');
     }
@@ -39,10 +40,14 @@ const deleteUser = async (id) => {
 };
 
 const adminService = {
-    fetchUsers,
-    createUser,
-    updateUser,
-    deleteUser
+    createUser: async () => {
+        const response = await baseURL.post('/user');
+        return response.data;
+    },
+
+    // fetchUsers,    
+    // updateUser,
+    // deleteUser
 };
 
 export default adminService;

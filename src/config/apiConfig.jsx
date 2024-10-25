@@ -1,7 +1,15 @@
 {/* Podemos testar esse modo com axios também*/}
   import axios from 'axios';
 
-const api = axios.create({
-    baseURL: 'http://localhost:5000/api',   // trocar pela base do backend
+const baseURL = axios.create({
+    baseURL: 'http://localhost:8080',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded, application/json',
+      'Accept': '*/*',
+      // 'Accept-Encoding': 'gzip, deflate, br',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'     
+  }
+    
 });
-export default api;
+export default baseURL;

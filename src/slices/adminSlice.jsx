@@ -11,7 +11,7 @@ export const fetchUsers = createAsyncThunk(
 export const register = createAsyncThunk(
     "users/register", async ( userData ) => {
    return await adminService.createUser(userData);
-});
+    });
 
 export const updateUser = createAsyncThunk(
     'users/update', async ({id, userData} ) => {

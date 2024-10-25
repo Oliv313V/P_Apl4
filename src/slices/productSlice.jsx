@@ -6,21 +6,21 @@ import productService from "../services/productService.jsx";
 export const fetchProduct = createAsyncThunk(
     'product/fetchAll',
     async () => {
-        return await productService.fetchProduct();
+        return await productService.getProducts();
     }
 );
 
 export const register = createAsyncThunk(
     "product/register",
     async (productData) => {
-        return await productService.createProduct(productData);
+        return await productService.addProduct(productData);
     }
 );
 
 export const updateProductData = createAsyncThunk(
     'product/update',
     async ({ id, productData }) => {
-        return await productService.updateProducData(id, productData);
+        return await productService.updateProduct(id, productData);
     }
 );
 

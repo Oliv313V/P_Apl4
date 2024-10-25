@@ -7,11 +7,13 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "babel-node src/pages/Apontamento/Product.jsx"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
     "axios": "^1.7.7",
+    "cors": "^2.8.5",
     "lucide-react": "^0.447.0",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
@@ -24,6 +26,10 @@
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
+    "@babel/core": "^7.25.9",
+    "@babel/node": "^7.25.9",
+    "@babel/preset-env": "^7.25.9",
+    "@babel/preset-react": "^7.25.9",
     "@eslint/js": "^9.9.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
