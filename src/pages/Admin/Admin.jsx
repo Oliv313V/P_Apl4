@@ -13,8 +13,9 @@ import Message from "../../components/Message";
 import './Admin.css';
 
 const Admin = () => {
-    const [name, setName] = useState("");
-    const [tipo, setTipo] = useState("");
+    const [username, setName] = useState("");
+    const [position, setTipo] = useState("");
+    const [roleType, setRoleType] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [editMode, setEditMode] = useState(false);
@@ -40,7 +41,7 @@ const Admin = () => {
             return;
         }
 
-        const user = { name, tipo, password };
+        const user = { username, position, roleType, password };
 
         if (editMode) {
             // Atualizar usuário
@@ -58,8 +59,9 @@ const Admin = () => {
     };
 
     const handleEdit = (user) => {
-        setName(user.name);
-        setTipo(user.tipo);
+        setName(user.username);
+        setTipo(user.position);
+        setRoleType(user.roleType);
         setEditMode(true);
         setCurrentUserId(user.id);
     };
@@ -90,8 +92,9 @@ const Admin = () => {
                 <p className="subtitle">{editMode ? "Editar Usuário" : "Insira credenciais para um novo usuário"}</p>
                 <div className="form-group">
                     <form onSubmit={handleSubmit}>
-                        <input type="text" placeholder="Nome" onChange={(e) => setName(e.target.value)} value={name} required />
-                        <input type="text" placeholder="Tipo" onChange={(e) => setTipo(e.target.value)} value={tipo} required />
+                        <input type="text" placeholder="Nome" onChange={(e) => setName(e.target.value)} value={username} required />
+                        <input type="text" placeholder="Cargo" onChange={(e) => setTipo(e.target.value)} value={position} required />
+                        <input type="text" placeholder="Tipo de acesso" onChange={(e) => setRoleType(e.target.value)} value={roleType} required />
                         <label>
                             <input type={isShow ? "text" : "password"} placeholder="Senha" onChange={(e) => setPassword(e.target.value)} value={password} required />                            
                             <button onClick={handlepassword}>
@@ -112,7 +115,7 @@ const Admin = () => {
                 <ul>
                     {users.map(user => (
                         <li key={user.id}>
-                            {user.name} - {user.tipo}
+                            {user.username} - {user.roletype}
                             <button onClick={() => handleEdit(user)}>Editar</button>
                             <button onClick={() => handleDelete(user.id)}>Excluir</button>
                         </li>
