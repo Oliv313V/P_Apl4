@@ -40,8 +40,8 @@ const deleteUser = async (id) => {
 };
 
 const adminService = {
-    createUser: async () => {
-        const response = await baseURL.post('/user');
+    createUser: async (userData) => {           
+        const response = await baseURL.post('/user', userData);        
         return response.data;
     },
 

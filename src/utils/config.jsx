@@ -17,10 +17,7 @@ export const requestConfig = (method, data, token = null, task = null ) => {
         };
     }else {
         config = {
-            method,
-            headers:{
-                "Content-Type": "application/json"
-            },
+            method,            
             body: JSON.stringify(data),
         };
     }
