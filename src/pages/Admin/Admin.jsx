@@ -52,7 +52,7 @@ const Admin = () => {
             });
         } else {
             // Criar novo usuário
-            dispatch(register(user)).then(() => {
+            dispatch(register(user)).then(() => {               
                 resetForm();
             });
         }

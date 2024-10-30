@@ -4,7 +4,7 @@
 const baseURL = axios.create({
     baseURL: 'http://localhost:8080',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded, application/json',
+      'Content-Type': 'application/json',
       'Accept': '*/*',
       // 'Accept-Encoding': 'gzip, deflate, br',
       'Access-Control-Allow-Origin': '*',
