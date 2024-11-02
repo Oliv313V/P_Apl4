@@ -1,39 +1,16 @@
-export const api = "http://localhost:3000";
-//precisa inserir o endereço certo
+export const api = "http://localhost:8080";
 
-export const requestConfig = (method, data, token = null, task = null ) => {
-    let config
+export const requestConfig = (method, data = null) => {
+    const config = {
+        method: method,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
 
-    if (task) {
-        config = {
-            method,
-            body:data,
-            headers:{}
-        }
-    }else if(method ==="DELETE" || data === null) {
-        config = {
-            method,
-            headers:{}
-        };
-    }else {
-        config = {
-            method,            
-            body: JSON.stringify(data),
-        };
+    if (data) {
+        config.body = JSON.stringify(data);
     }
 
-    if(token) {
-        config.headers.Authorization = `Bearer ${token}`
-    }
     return config;
 };
-
-
-{/* ou podemos testar esse config
-import axios from 'axios';
-
-const api = axios.create({
-    baseURL: 'http://localhost:5000/api', // trocar pela base do backend
-});
-export default api;
-*/}

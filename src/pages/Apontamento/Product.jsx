@@ -1,133 +1,90 @@
-import {useEffect, useState} from "react";
-
-import productService from "../../services/productService.jsx";
-
-
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProducts, registerProduct, updateProduct, deleteProduct, reset } from '../../slices/productSlice.jsx';
+import Message from "../../components/Message";
 import './Product.css';
-import * as console from "react-dom/test-utils";
-import Message from "../../components/Message.jsx";
-
 
 const Product = () => {
-    const [products, setProducts] = useState([]);
-    const [productName, setProductName] = useState("");
-    const [productType, setProductType] = useState("");
-    const [loading, setLoading] = useState(false); // Estado de loading
-    const [error, setError] = useState(null); // Estado de erro
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [editMode, setEditMode] = useState(false);
+    const [currentProductId, setCurrentProductId] = useState(null);
 
+    const dispatch = useDispatch();
+    const { loading, error } = useSelector((state) => state.auth);
+    const products = useSelector((state) => state.product.products);
+
+    /*
     useEffect(() => {
         const loadProducts = async () => {
-            setLoading(true);
-            try {
-                const productData = await fetchProducts(); // Chama a função para buscar produtos
-                setProducts(productData); // Atualiza o estado
-            } catch (error) {
-                console.error("Erro ao carregar produtos:", error);
-                setError(error.message);
-            } finally {
-                setLoading(false);
-            }
+            await dispatch(fetchProducts());
         };
-        loadProducts(); // Chama a função para buscar produtos? Falta
-    }, []);
+        loadProducts();
+        dispatch(reset());
+    }, [dispatch]);
+    */
 
-    const fetchProducts = async () => {
-        try {
-            return await productService.getProducts();
-        } catch (error) {
-            console.error('Erro ao buscar produtos', error);
-            throw error; // Propaga o erro para o useEffect
-        }
-    };
-
-    const handleAddProduct = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        setLoading(true);
-        try {
-            await productService.addProduct({ name: productName, type: productType });
-            const updatedProducts = await fetchProducts();
-            setProducts(updatedProducts);
-            setProductName("");
-            setProductType("");
-        } catch (error) {
-            console.error("Erro ao adicionar produto:", error);
-            setError(error.message);
-        } finally {
-            setLoading(false);
+
+        const product = { name, description };
+        console.log('Produto a ser registrado:', product);
+
+        if (editMode) {
+            dispatch(updateProduct({ id: currentProductId, product })).then(() => {
+                resetForm();
+                setEditMode(false);
+                setCurrentProductId(null);
+            });
+        } else {
+            dispatch(registerProduct(product)).then(() => {
+                resetForm();
+            });
         }
     };
 
-    const handleUpdatedProduct = async (id) => {
-        const updatedData = {
-            name: productName,
-            type: productType,
-        };
-        try {
-            const updatedProduct = await productService.updateProduct(id, updatedData);
-            console.log('Produto atualizado:', updatedProduct);
-            const updatedProducts = await fetchProducts();
-            setProducts(updatedProducts);
-        } catch (error) {
-            console.error('Erro ao atualizar produto!', error);
-            setError(error.message);
-        }
+    const handleEdit = (product) => {
+        setName(product.name);
+        setDescription(product.description);
+        setEditMode(true);
+        setCurrentProductId(product.id);
     };
 
-    const handleDeleteProduct = async (id) => {
-        try {
-            await productService.deleteProduct(id);
-            const updatedProducts = await fetchProducts();
-            setProducts(updatedProducts);
-        } catch (error) {
-            console.error('Erro ao excluir produto', error);
-            setError(error.message);
-        }
+    const handleDelete = (id) => {
+        dispatch(deleteProduct(id)).then(() => {
+            dispatch(fetchProducts());
+        });
+    };
+
+    const resetForm = () => {
+        setName("");
+        setDescription("");
     };
 
     return (
-        <div id="product">
-            <div className="product-container">
-                <h2>Gerenciar produtos</h2>
-                <p className="product-subtitle">Insira o novo produto</p>
-                <form className="product-form" onSubmit={handleAddProduct}>
-                    <label htmlFor="productName">Produto: </label>
-                    <input
-                        type="text"
-                        id="productName"
-                        name="productName"
-                        value={productName}
-                        onChange={(e) => setProductName(e.target.value)}
-                        required
-                    /><br />
-
-                    <label htmlFor="productType"> Tipo de Produto: </label>
-                    <input
-                        type="text"
-                        id="productType"
-                        name="productType"
-                        value={productType}
-                        onChange={(e) => setProductType(e.target.value)}
-                        required
-                    />
-                    <button type="submit">Adicionar Produto</button>
+        <div id="gerenciar">
+            <div className="formulario-cadastro">
+                <h2>Product - Cadastramento de produtos</h2>
+                <p className="subtitle">{editMode ? "Editar Produto" : "Insira informações para um novo produto"}</p>
+                <form onSubmit={handleSubmit}>
+                    <input type="text" placeholder="Nome do Produto" onChange={(e) => setName(e.target.value)} value={name} required />
+                    <input type="text" placeholder="Descrição" onChange={(e) => setDescription(e.target.value)} value={description} required />
+                    <input type="submit" value={editMode ? "Atualizar" : "Cadastrar"} disabled={loading} />
                     {loading && <p>Processando...</p>}
                     {error && <Message msg={error} type="error" />}
                 </form>
             </div>
-            <div className="productsIn-container">
-                <h3>Produtos Cadastrados</h3>
+
+            <div className="products-container">
+                <h3>Conferir produtos cadastrados</h3>
                 <ul>
-                    {products.length > 0 ? (
-                        products.map((product) => (
-                            <li key={product.id}>
-                                {product.name} - {product.type}
-                                <button onClick={() => handleUpdatedProduct(product.id)}>Atualizar</button>
-                                <button onClick={() => handleDeleteProduct(product.id)}>Excluir</button>
-                            </li>
-                        ))
-                    ) : (
-                        <li>Nenhum produto cadastrado!</li>
-                    )}
+                    {products.map(product => (
+                        <li key={product.id}>
+                            {product.name} - {product.description}
+                            <button onClick={() => handleEdit(product)}>Editar</button>
+                            <button onClick={() => handleDelete(product.id)}>Excluir</button>
+                        </li>
+                    ))}
                 </ul>
             </div>
         </div>
