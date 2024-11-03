@@ -5,6 +5,7 @@ export const requestConfig = (method, data = null) => {
         method: method,
         headers: {
             'Content-Type': 'application/json',
+            'Accept': 'application/json', // Adiciona cabeçalho Accept
         },
     };
 

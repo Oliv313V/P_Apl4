@@ -11,35 +11,33 @@ const Product = () => {
     const [currentProductId, setCurrentProductId] = useState(null);
 
     const dispatch = useDispatch();
-    const { loading, error } = useSelector((state) => state.auth);
+    const { loading, error } = useSelector((state) => state.product); // Corrigido para acessar o estado correto
     const products = useSelector((state) => state.product.products);
 
-    /*
     useEffect(() => {
         const loadProducts = async () => {
             await dispatch(fetchProducts());
         };
         loadProducts();
-        dispatch(reset());
+        return () => {
+            dispatch(reset());
+        };
     }, [dispatch]);
-    */
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const product = { name, description };
         console.log('Produto a ser registrado:', product);
 
         if (editMode) {
-            dispatch(updateProduct({ id: currentProductId, product })).then(() => {
-                resetForm();
-                setEditMode(false);
-                setCurrentProductId(null);
-            });
+            await dispatch(updateProduct({ id: currentProductId, productData: product })); // Mudança aqui
+            resetForm();
+            setEditMode(false);
+            setCurrentProductId(null);
         } else {
-            dispatch(registerProduct(product)).then(() => {
-                resetForm();
-            });
+            await dispatch(registerProduct(product));
+            resetForm();
         }
     };
 
