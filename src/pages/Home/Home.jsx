@@ -14,7 +14,7 @@ const Home = () => {
             <ul>
                 <li><Link to="/admin">Gerenciar Usuários</Link></li>
                 <li><Link to="/produto">Produto</Link></li>
-                <li><Link to="/apontamento">Produção</Link></li>
+                <li><Link to="/producao">Produção</Link></li>
                 <li><Link to="/report">Relatório</Link></li>
             </ul>
         </div>

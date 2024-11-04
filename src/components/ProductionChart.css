@@ -18,3 +18,15 @@
     border-radius: 4px;
     padding: 5px;
 }
+
+.production-chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .chart-title {
+    text-align: center;
+  }
