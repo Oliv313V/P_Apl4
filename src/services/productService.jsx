@@ -1,22 +1,46 @@
 import baseURL from "../config/configUrl";
 
+const fetchProducts = async () => {
+    const config = requestConfig("GET");
+    const response = await fetch(`${baseURL}/product`, config);
+    if (!response.ok) {
+        throw new Error('Erro ao buscar produtos');
+    }
+    return await response.json();
+};
+
+const createProduct = async (productData) => {
+    const config = requestConfig("POST", productData);
+    const response = await fetch(`${baseURL}/product`, config);
+    if (!response.ok) {
+        throw new Error('Erro ao criar produto');
+    }
+    return await response.json();
+};
+
+const updateProduct = async (id, productData) => {
+    const config = requestConfig("PUT", productData);       
+    const response = await fetch(`${baseURL}/product/${id}`, config);
+    if (!response.ok) {
+        throw new Error('Erro ao atualizar produto');
+    }        
+    return response.json();
+};
+
+const deleteProduct = async (id) => {
+    const config = requestConfig("DELETE");
+    const response = await fetch(`${baseURL}/product/${id}`, config);   
+    if (!response.ok) {
+        throw new Error('Erro ao deletar o produto');
+    }
+    return id;
+};
 
 const productService = {
-
-    getProducts: async () => {
-        const response = await baseURL.get('/product'); // conferir se é esse mesmo o endponit
-        return response.data;
-    },
-    addProduct: async (product) => {
-        const response = await baseURL.post("/product", product);
-        return response.data;
-    },
-    updateProduct: async ( id, product ) => {
-        const response = await baseURL.patch(`/product/${id}`, product);
-        return response.data;
-    },
-    deleteProduct: async (id) => {
-        await baseURL.delete(`/product/${id}`);
-    },
+    fetchProducts,
+    createProduct,
+    updateProduct,
+    deleteProduct,
 };
+
 export default productService;
