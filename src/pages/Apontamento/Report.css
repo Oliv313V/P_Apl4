@@ -14,10 +14,8 @@
 
 .production-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    margin: 0 auto;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 #manage-production h2 {

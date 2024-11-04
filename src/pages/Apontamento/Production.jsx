@@ -1,23 +1,23 @@
 
 import { useEffect, useState } from "react";
 import productionService from "../../services/productionService.jsx";
-import reportService from "../../services/reportService.jsx";
 import ProductionChart from "../../components/ProductionChart";
 import * as console from "react-dom/test-utils";
 import Message from "../../components/Message.jsx";
 
 import "./Production.css";
 
-
-
 const Production = () => {
     const [productionData, setProductionData] = useState({
         planQuantity: '',
         realQuantity: '',
         unit: '',
+        startTime: '',
         finishTime: '',
-        downtime: '',
+        startDowntime: '',
+        finishDowntime: '',
         packageType: '',
+        equipment: '',
         labelType: '',
         bestBefore: '',
         notes: ''
@@ -32,7 +32,7 @@ const Production = () => {
         const loadReports = async () => {
             setLoading(true);
             try {
-                const reportData = await fetchReports(); // Chama a função para buscar relatórios
+                const reportData = await productionService.fetchProduction(); // Chama a função para buscar relatórios                
                 setReports(reportData); // Atualiza o estado
             } catch (error) {
                 console.error("Erro ao carregar relatórios:", error);
@@ -44,39 +44,19 @@ const Production = () => {
         loadReports(); // Chama a função para buscar relatórios
     }, []);
 
-    const fetchReports = async () => {
-        try {
-            const reportData = await reportService.getReports();
-            return reportData;
-        } catch (error) {
-            console.error("Erro ao buscar relatórios", error);
-            throw error;
-        }
-    };
-
-    const handleRecordProduction = async (e) => {
+    const handleCreateProduction = async (e) => {
         e.preventDefault();
         setLoading(true);
         try {
+
             if (editingId) {
-                await productionService.updateProductionData(editingId, productionData);
+                await productionService.updateProduction(editingId, productionData);
             } else {
-                await productionService.recordProduction(productionData);
+                await productionService.createProduction(productionData);
+                setReports(reports);
             }
 
-            // Limpa os dados do formulário e ID
-            setProductionData({
-                planQuantity: '',
-                realQuantity: '',
-                unit: '',
-                finishTime: '',
-                downtime: '',
-                packageType: '',
-                labelType: '',
-                bestBefore: '',
-                notes: ''
-            });
-            await fetchReports();
+            await productionService.fetchProduction();
         } catch (error) {
             console.error("Erro ao registrar ou atualizar produção:", error);
             setError(error.message);
@@ -93,15 +73,15 @@ const Production = () => {
         }));
     };
 
-    const handleEdit = (report) => {
-        setProductionData(report); // Define os dados do registro no formulário
-        setEditingId(report.id); // Armazena o ID do registro em edição
+    const handleEdit = (productionData) => {
+        setProductionData(productionData); // Define os dados do registro no formulário
+        setEditingId(productionData.idProduction); // Armazena o ID do registro em edição
     };
 
     const handleDelete = async (id) => {
         try {
-            await productionService.deleteProduction(id);
-            await fetchReports();
+            productionService.deleteProduction(id);
+            setReports(reports.filter((report) => report.idProduction !== id));
         } catch (error) {
             console.error("Erro ao excluir produção:", error);
             setError(error.message);
@@ -115,7 +95,7 @@ const Production = () => {
 
                 <p className="production-subtitle">Insira os dados da nova produção</p>
 
-                <form onSubmit={handleRecordProduction}>
+                <form onSubmit={handleCreateProduction}>
                     <label htmlFor="planQuantity">Quantidade planejada:</label>
                     <input
                         type="number"
@@ -146,7 +126,17 @@ const Production = () => {
                         required
                     /><br />
 
-                    <label htmlFor="finishTime">Fim de produção:</label>
+                    <label htmlFor="startTime">Inicio da produção:</label>
+                    <input
+                        type="datetime-local"
+                        id="startTime"
+                        name="startTime"
+                        value={productionData.startTime}
+                        onChange={handleChange}
+                        required
+                    /><br />
+
+                    <label htmlFor="finishTime">Fim da produção:</label>
                     <input
                         type="datetime-local"
                         id="finishTime"
@@ -156,14 +146,22 @@ const Production = () => {
                         required
                     /><br />
 
-                    <label htmlFor="downtime">Tempo de parada:</label>
+                    <label htmlFor="startDowntime">Inicio tempo de parada:</label>
                     <input
-                        type="number"
-                        id="downtime"
-                        name="downtime"
-                        value={productionData.downtime}
+                        type="datetime-local"
+                        id="startDowntime"
+                        name="startDowntime"
+                        value={productionData.startDowntime}
                         onChange={handleChange}
-                        required
+                    /><br />
+
+                    <label htmlFor="finishDowntime">Fim do tempo de parada:</label>
+                    <input
+                        type="datetime-local"
+                        id="finishDowntime"
+                        name="finishDowntime"
+                        value={productionData.finishDowntime}
+                        onChange={handleChange}
                     /><br />
 
                     <label htmlFor="packageType">Embalagem:</label>
@@ -186,6 +184,16 @@ const Production = () => {
                         required
                     /><br />
 
+                    <label htmlFor="equipment">Equipamento:</label>
+                    <input
+                        type="number"
+                        id="equipment"
+                        name="equipment"
+                        value={productionData.equipment}
+                        onChange={handleChange}
+                        required
+                    /><br />
+
                     <label htmlFor="bestBefore">Data de validade:</label>
                     <input
                         type="date"
@@ -203,7 +211,6 @@ const Production = () => {
                         name="notes"
                         value={productionData.notes}
                         onChange={handleChange}
-                        required
                     /><br />
 
                     <button type="submit">{editingId ? 'Atualizar' : 'Cadastrar'}</button>
@@ -212,17 +219,39 @@ const Production = () => {
                 </form>
 
                 <div className="reportsIn-container">
-                    <h3>Relatório de Produção</h3>
+                    <h3>Útimo Apontamento de Produção Cadastrado</h3>
                     {reports.length > 0 ? (
-                        <ul>
-                            {reports.map((report) => (
-                                <li key={report.id}>
-                                    {`${report.planQuantity} - ${report.realQuantity} - ${report.unit} - ${report.finishTime} - ${report.downtime} - ${report.packageType} - ${report.labelType} - ${report.bestBefore} - ${report.notes}`}
-                                    <button onClick={() => handleEdit(report)}>Editar</button>
-                                    <button onClick={() => handleDelete(report.id)}>Excluir</button>
-                                </li>
-                            ))}
-                        </ul>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Qtd Planejada</th>
+                                    <th>Qtd Real</th>             
+                                    <th>Equipamento</th>                
+                                    <th>Lote</th>                
+                                    <th>Observações</th>                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {reports.length > 0 && (
+                                    <tr
+                                        key={reports[reports.length - 1].idProduction}
+                                        className="table-row-even"
+                                    >
+                                        <td>{reports[reports.length - 1].idProduction}</td>
+                                        <td>{reports[reports.length - 1].planQuantity}</td>
+                                        <td>{reports[reports.length - 1].realQuantity}</td>      
+                                        <td>{reports[reports.length - 1].equipment}</td>      
+                                        <td>{reports[reports.length - 1].productionBatch}</td>        
+                                        <td>{reports[reports.length - 1].notes}</td>
+                                        <td>
+                                            <button onClick={() => handleEdit(reports[reports.length - 1])}>Editar</button>
+                                            <button onClick={() => handleDelete(reports[reports.length - 1].idProduction)}>Excluir</button>
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
                     ) : (
                         <p>Não há dados de produção disponíveis!</p>
                     )}

@@ -20,6 +20,7 @@ import Login from "./pages/Auth/Login";
 import Admin from "./pages/Admin/Admin.jsx";
 import Produto from "./pages/Apontamento/Product.jsx";
 import Producao from "./pages/Apontamento/Production.jsx";
+import Relatorio from "./pages/Apontamento/Report.jsx";
 
 
 function App()  {
@@ -54,6 +55,7 @@ function App() {
                         <Route path="/UserList" element={<Admin />} />
                         <Route path="/produto" element={<Produto />} />
                         <Route path="/producao" element={<Producao />} />
+                        <Route path="/relatorio" element={<Relatorio />} />
 
                         {/* <Route path="/" element={auth ? <Home /> : <Navigate to="/login" />} />
                         <Route path="/login" element={!auth ? <Login /> : <Navigate to="/" />} />

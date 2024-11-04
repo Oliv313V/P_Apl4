@@ -1,5 +1,5 @@
 import{api, requestConfig} from "../utils/config.jsx";
-import baseURL from '../config/apiConfig.jsx';
+import baseURL from "../config/configUrl.jsx";
 
 
 //Registrar usuário no sistema
