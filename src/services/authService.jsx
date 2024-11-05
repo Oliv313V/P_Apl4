@@ -1,17 +1,12 @@
-//faz requisição http e autentica o usuário
-
-import{api, requestConfig} from "../utils/config.jsx";
-
+import baseURL from "../config/configUrl.jsx"
 
 const logout = () => {
     localStorage.removeItem("token");
 };
 
 const login = async (data) => {
-    const config = requestConfig("POST", data);
-
     try {
-        const res = await fetch(api + "users/login", config)
+        const res = await baseURL.post('users/login', data)
             .then((res) => res.json())
             .catch((err )=> err);
 

@@ -32,6 +32,11 @@
     color: #282C34; /* Cor para o subtítulo */
 }
 
+.report-container {
+    margin: 20px;
+    font-family: Roboto, sans-serif;
+}
+
 .reportsIn-container h3 {
     text-align: left;
     margin-top: 2rem; /* Ajuste este valor conforme necessário */

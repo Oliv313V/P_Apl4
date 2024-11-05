@@ -62,7 +62,7 @@ const Product = () => {
     return (
         <div id="gerenciar">
             <div className="formulario-cadastro">
-                <h2>Product - Cadastramento de produtos</h2>
+                <h2>Cadastro de produtos</h2>
                 <p className="subtitle">{editMode ? "Editar Produto" : "Insira informações para um novo produto"}</p>
                 <form onSubmit={handleSubmit}>
                     <input type="text" placeholder="Nome do Produto" onChange={(e) => setName(e.target.value)} value={name} required />

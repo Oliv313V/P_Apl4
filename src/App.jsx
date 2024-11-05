@@ -55,7 +55,7 @@ function App() {
                         <Route path="/UserList" element={<Admin />} />
                         <Route path="/produto" element={<Produto />} />
                         <Route path="/producao" element={<Producao />} />
-                        <Route path="/relatorio" element={<Relatorio />} />
+                        
 
                         {/* <Route path="/" element={auth ? <Home /> : <Navigate to="/login" />} />
                         <Route path="/login" element={!auth ? <Login /> : <Navigate to="/" />} />

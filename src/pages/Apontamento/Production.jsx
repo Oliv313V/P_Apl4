@@ -51,6 +51,7 @@ const Production = () => {
 
             if (editingId) {
                 await productionService.updateProduction(editingId, productionData);
+                Production();
             } else {
                 await productionService.createProduction(productionData);
                 setReports(reports);
@@ -88,6 +89,11 @@ const Production = () => {
         }
     };
 
+    const handleReport = async () => {
+        const reportData = await productionService.fetchProductionPDF();
+    }
+
+
     return (
         <div id="manage-production">
             <div className="production-container">
@@ -101,7 +107,7 @@ const Production = () => {
                         type="number"
                         id="planQuantity"
                         name="planQuantity"
-                        value={productionData.planQuantity}
+                        value={productionData.planQuantity}   
                         onChange={handleChange}
                         required
                     /><br />
@@ -218,38 +224,61 @@ const Production = () => {
                     {error && <Message msg={error} type="error" />}
                 </form>
 
+                <div id="report">
+                    <button type="button" onClick={handleReport}>Gerar Relatório</button>
+                </div>
+
                 <div className="reportsIn-container">
-                    <h3>Útimo Apontamento de Produção Cadastrado</h3>
                     {reports.length > 0 ? (
                         <table>
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Qtd Planejada</th>
-                                    <th>Qtd Real</th>             
-                                    <th>Equipamento</th>                
-                                    <th>Lote</th>                
-                                    <th>Observações</th>                                    
+                                    <th>Qtd. Planejada</th>
+                                    <th>Qtd. Real</th>
+                                    <th>Uni.</th>
+                                    <th>Inicio</th>
+                                    <th>Fim</th>
+                                    <th>Inicio Parada</th>
+                                    <th>Fim Parada</th>
+                                    <th>Total Parada</th>
+                                    <th>Embalagem</th>
+                                    <th>Equipamento</th>
+                                    <th>Turno</th>
+                                    <th>Etiqueta</th>
+                                    <th>Lote</th>
+                                    <th>Validade</th>
+                                    <th>Obs.</th>                                    
                                 </tr>
                             </thead>
                             <tbody>
-                                {reports.length > 0 && (
+                                {reports.map((productionData, index) => (
                                     <tr
-                                        key={reports[reports.length - 1].idProduction}
-                                        className="table-row-even"
+                                        key={productionData.length - productionData.length - 1}
+                                        className={index % 2 === 0 ? 'table-row-even' : 'table-row-odd'}
                                     >
-                                        <td>{reports[reports.length - 1].idProduction}</td>
-                                        <td>{reports[reports.length - 1].planQuantity}</td>
-                                        <td>{reports[reports.length - 1].realQuantity}</td>      
-                                        <td>{reports[reports.length - 1].equipment}</td>      
-                                        <td>{reports[reports.length - 1].productionBatch}</td>        
-                                        <td>{reports[reports.length - 1].notes}</td>
+                                        <td>{productionData.idProduction}</td>
+                                        <td>{productionData.planQuantity}</td>
+                                        <td>{productionData.realQuantity}</td>
+                                        <td>{productionData.unit}</td>
+                                        <td>{productionData.startTime}</td>
+                                        <td>{productionData.finishTime}</td>
+                                        <td>{productionData.startDowntime}</td>
+                                        <td>{productionData.finishDowntime}</td>
+                                        <td>{productionData.downtime}</td>
+                                        <td>{productionData.packageType}</td>
+                                        <td>{productionData.equipment}</td>
+                                        <td>{productionData.workShift}</td>
+                                        <td>{productionData.labelType}</td>
+                                        <td>{productionData.productionBatch}</td>
+                                        <td>{productionData.bestBefore}</td>
+                                        <td>{productionData.notes}</td>
                                         <td>
-                                            <button onClick={() => handleEdit(reports[reports.length - 1])}>Editar</button>
-                                            <button onClick={() => handleDelete(reports[reports.length - 1].idProduction)}>Excluir</button>
+                                            <button onClick={() => handleEdit(productionData)}>Editar</button>
+                                            <button onClick={() => handleDelete(productionData.idProduction)}>Excluir</button>
                                         </td>
                                     </tr>
-                                )}
+                                ))}
                             </tbody>
                         </table>
                     ) : (
