@@ -10,12 +10,16 @@ const productionService = {
 
     createProduction: async (productionData) => {
         const response = await baseURL.post('/production', productionData);
+        setReports(response.data);
+        setProductionData();
         return response.data;
     },
 
     updateProduction: async (id, productionData) => {
         try {
-            const response = await baseURL.patch(`/production/${id}`, productionData);
+            const response = await baseURL.put(`/production/${id}`, productionData);
+            setReports(response.data);
+            setProductionData();
             return response.data;
         } catch (error) {
             console.error("Erro ao atualizar dados de produção: ", error);
@@ -28,7 +32,7 @@ const productionService = {
     },
 
     fetchProductionPDF: async () => {
-        try {            
+        try {
             const response = await baseURLPDF.get('/production/pdf');
             const blob = new Blob([response.data], { type: 'application/pdf' });
             saveAs(blob, 'production_report.pdf');

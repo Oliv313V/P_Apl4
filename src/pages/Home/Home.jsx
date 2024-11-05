@@ -3,8 +3,6 @@ import './Home.css';
 //components
 import { Link } from "react-router-dom";
 
-
-
 const Home = () => {
     return (
         <div className="home-container">
@@ -14,8 +12,7 @@ const Home = () => {
             <ul>
                 <li><Link to="/admin">Gerenciar Usuários</Link></li>
                 <li><Link to="/produto">Produto</Link></li>
-                <li><Link to="/producao">Produção</Link></li>
-                <li><Link to="/report">Relatório</Link></li>
+                <li><Link to="/producao">Produção</Link></li>               
             </ul>
         </div>
     );
