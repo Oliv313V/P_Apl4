@@ -39,6 +39,20 @@ const deleteUser = async (id) => {
     return id;
 };
 
+// INSERIDO POR GILSON
+/*
+const searchUser = async (userData) => {
+    const config = requestConfig("GET", userData.username);
+    const response = await fetch(config, baseURL + `/user/${userData.username}`);
+    alert(userData.username + " " + userData.password);
+    if(!response.ok) {
+        throw new Error( 'Erro ao buscar usuário');
+    }
+    return response.json();
+};
+*/
+// ATÉ AQUI
+
 const adminService = {
     createUser: async (userData) => {           
         const response = await baseURL.post('/user', userData);        
