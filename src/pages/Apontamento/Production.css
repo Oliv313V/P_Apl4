@@ -54,6 +54,15 @@ label {
     color: #282C34; /* Cor do texto do label */
 }
 
+textarea, select {
+    padding: 0.75rem;
+    border: 1px solid #BA9CB5;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #282C34;
+    width: 400px; /* Garante que todos os inputs tenham a mesma largura */
+}
+
 input[type="text"],
 input[type="number"],
 input[type="date"],
