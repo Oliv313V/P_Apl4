@@ -24,6 +24,14 @@ export const deleteUser = createAsyncThunk(
         return id;
     });
 
+// Incluído por Gilson
+/*
+export const searchUser = createAsyncThunk(
+    "users/search", async ( userData ) => {    
+    return await adminService.searchUser(userData);
+    });
+*/
+//Até aqui
 
 //criação de slice para gerenciar usuários
 const adminSlice = createSlice ({

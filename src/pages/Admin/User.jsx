@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers, reset } from "../../slices/adminSlice.jsx";
 //import Navbar from "../../components/Navbar.jsx";
 
-import '.UserList.css';
+import '.User.css'; // alterado por Gilson
 
 const UserList = () => {
     const dispatch = useDispatch();
