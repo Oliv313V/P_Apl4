@@ -58,8 +58,7 @@ const Production = () => {
             }
 
             await productionService.fetchProduction();
-        } catch (error) {
-            console.error("Erro ao registrar ou atualizar produção:", error);
+        } catch (error) {            
             setError(error.message);
         } finally {
             setLoading(false);
@@ -107,10 +106,10 @@ const Production = () => {
                         type="number"
                         id="planQuantity"
                         name="planQuantity"
-                        value={productionData.planQuantity}   
+                        value={productionData.planQuantity}
                         onChange={handleChange}
                         required
-                    /><br />
+                    />
 
                     <label htmlFor="realQuantity">Quantidade real:</label>
                     <input
@@ -120,17 +119,28 @@ const Production = () => {
                         value={productionData.realQuantity}
                         onChange={handleChange}
                         required
-                    /><br />
+                    />
 
                     <label htmlFor="unit">Unidade:</label>
-                    <input
+                    <select
                         type="text"
                         id="unit"
                         name="unit"
                         value={productionData.unit}
                         onChange={handleChange}
                         required
-                    /><br />
+                    >
+                        <option value="" disabled>Selecione a Unidade</option>
+                        <option value="Kg">Kg</option>
+                        <option value="Gr">Gr</option>
+                        <option value="Lt">Lt</option>
+                        <option value="Ml">Ml</option>
+                        <option value="Uni">Uni</option>
+                        <option value="Cx">Cx</option>
+                        <option value="Pct">Pct</option>
+                        <option value="Pc">Pc</option>
+                        <option value="Mt">Mt</option>
+                    </select>
 
                     <label htmlFor="startTime">Inicio da produção:</label>
                     <input
@@ -140,7 +150,7 @@ const Production = () => {
                         value={productionData.startTime}
                         onChange={handleChange}
                         required
-                    /><br />
+                    />
 
                     <label htmlFor="finishTime">Fim da produção:</label>
                     <input
@@ -150,7 +160,7 @@ const Production = () => {
                         value={productionData.finishTime}
                         onChange={handleChange}
                         required
-                    /><br />
+                    />
 
                     <label htmlFor="startDowntime">Inicio tempo de parada:</label>
                     <input
@@ -159,7 +169,7 @@ const Production = () => {
                         name="startDowntime"
                         value={productionData.startDowntime}
                         onChange={handleChange}
-                    /><br />
+                    />
 
                     <label htmlFor="finishDowntime">Fim do tempo de parada:</label>
                     <input
@@ -168,37 +178,73 @@ const Production = () => {
                         name="finishDowntime"
                         value={productionData.finishDowntime}
                         onChange={handleChange}
-                    /><br />
+                    />
 
                     <label htmlFor="packageType">Embalagem:</label>
-                    <input
+                    <select
                         type="text"
                         id="packageType"
                         name="packageType"
                         value={productionData.packageType}
                         onChange={handleChange}
                         required
-                    /><br />
+                        placeholder="Caixa, Pote, etc."
+                    >
+
+                        <option value="" disabled>Selecione a Embalagem</option>
+                        <option value="Cx">Caixa</option>
+                        <option value="Sc">Saco</option>
+                        <option value="Pt">Pote</option>
+                        <option value="Plt">Palete</option>
+                        <option value="Gl">Galão</option>
+                    </select>
 
                     <label htmlFor="labelType">Tipo de etiqueta:</label>
-                    <input
+                    <select
                         type="text"
                         id="labelType"
                         name="labelType"
                         value={productionData.labelType}
                         onChange={handleChange}
                         required
-                    /><br />
+                    >
+                        <option value="" disabled>Selecione a Etiqueta</option>
+                        <option value="Srg">Serigrafia</option>
+                        <option value="Ad">Adesiva</option>
+                        <option value="Pp">Papel</option>
+                    </select>
 
                     <label htmlFor="equipment">Equipamento:</label>
-                    <input
+                    <select
                         type="number"
                         id="equipment"
                         name="equipment"
                         value={productionData.equipment}
                         onChange={handleChange}
                         required
-                    /><br />
+                    >
+                        <option value="" disabled>Selecione o Equipamento</option>
+                        <option value="Equip-1">Equip. 1</option>
+                        <option value="Equip-2">Equip. 2</option>
+                        <option value="Equip-3">Equip. 3</option>
+                        <option value="Equip-4">Equip. 4</option>
+                        <option value="Equip-5">Equip. 5</option>
+                        <option value="Equip-6">Equip. 6</option>
+                        <option value="Equip-7">Equip. 7</option>
+                        <option value="Equip-8">Equip. 8</option>
+                        <option value="Equip-9">Equip. 9</option>
+                        <option value="Equip-10">Equip. 10</option>
+                        <option value="Equip-11">Equip. 11</option>
+                        <option value="Equip-12">Equip. 12</option>
+                        <option value="Equip-13">Equip. 13</option>
+                        <option value="Equip-14">Equip. 14</option>
+                        <option value="Equip-15">Equip. 15</option>
+                        <option value="Equip-16">Equip. 16</option>
+                        <option value="Equip-17">Equip. 17</option>
+                        <option value="Equip-18">Equip. 18</option>
+                        <option value="Equip-19">Equip. 19</option>
+                        <option value="Equip-20">Equip. 20</option>
+                    </select>
 
                     <label htmlFor="bestBefore">Data de validade:</label>
                     <input
@@ -208,16 +254,18 @@ const Production = () => {
                         value={productionData.bestBefore}
                         onChange={handleChange}
                         required
-                    /><br />
+                    />
 
                     <label htmlFor="notes">Observações:</label>
-                    <input
-                        type="text"
+                    <textarea
+                        rows="5"
+                        cols="50"
                         id="notes"
                         name="notes"
                         value={productionData.notes}
                         onChange={handleChange}
-                    /><br />
+                        placeholder="Insira observações sobre a produção"
+                    />
 
                     <button type="submit">{editingId ? 'Atualizar' : 'Cadastrar'}</button>
                     {loading && <p>Processando...</p>}
@@ -225,7 +273,7 @@ const Production = () => {
                 </form>
 
                 <div id="report">
-                    <button type="button" onClick={handleReport}>Gerar Relatório</button>
+                    <button type="submit" onClick={handleReport}>Gerar Relatório</button>
                 </div>
 
                 <div className="reportsIn-container">
@@ -248,7 +296,7 @@ const Production = () => {
                                     <th>Etiqueta</th>
                                     <th>Lote</th>
                                     <th>Validade</th>
-                                    <th>Obs.</th>                                    
+                                    <th>Obs.</th>
                                 </tr>
                             </thead>
                             <tbody>
