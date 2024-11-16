@@ -6,7 +6,7 @@ import { useState } from "react";
 import { FaUser, FaLock } from "react-icons/fa";
 import {useAuth} from "../../hooks/useAuth.jsx";
 
-import { searchUser } from "../../slices/adminSlice.jsx"; // Incluido por Gilson
+import searchUser from "../../slices/adminSlice.jsx"; // Incluido por Gilson
 
 import adminSlice from "../../slices/adminSlice.jsx"; // Incluido por Gilson
 
