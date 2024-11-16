@@ -9,7 +9,6 @@ import { deleteUser } from "../../slices/adminSlice.jsx";
 
 import { register } from "../../slices/adminSlice.jsx";
 
-
 import Message from "../../components/Message";
 
 import './Admin.css';
@@ -35,9 +34,10 @@ const Admin = () => {
         dispatch(reset());
     }, [dispatch]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
+            
         if (password !== confirmPassword) {
             alert("As senhas não coincidem.");
             return;
@@ -47,14 +47,14 @@ const Admin = () => {
 
         if (editMode) {
             // Atualizar usuário
-            dispatch(updateUser({ id: currentUserId, user })).then(() => {
-                resetForm();
-                setEditMode(false);
-                setCurrentUserId(null);
-            });
+            await dispatch(updateUser({ id: currentUserId, userData: user }));
+            resetForm();
+            setEditMode(false);
+            setCurrentUserId(null);
+            
         } else {
             // Criar novo usuário
-            dispatch(register(user)).then(() => {               
+           await dispatch(register(user)).then(() => {               
                 resetForm();
             });
         }
@@ -129,3 +129,5 @@ const Admin = () => {
 };
 
 export default Admin;
+
+
