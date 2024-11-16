@@ -1,7 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
 import adminService from "../services/adminService.jsx";
-
 
 export const fetchUsers = createAsyncThunk(
     'users/fetchAll', async () => {
@@ -9,12 +7,15 @@ export const fetchUsers = createAsyncThunk(
     });
 
 export const register = createAsyncThunk(
-    "users/register", async ( userData ) => {    
+    "users/register", async ( userData ) => {  
+         
    return await adminService.createUser(userData);
     });
 
 export const updateUser = createAsyncThunk(
+    
     'users/update', async ({id, userData} ) => {
+        
         return await adminService.updateUser(id, userData);
     });
 
@@ -68,11 +69,24 @@ const adminSlice = createSlice ({
                     state.users[index] = action.payload;
                 }
             })
+            .addCase(deleteUser.pending, (state, action) => {
+                state.status = 'loading';
+                state.error = null;
+            })
             .addCase(deleteUser.fulfilled, (state, action) => {
-                state.users = state.users.filter (user => user.id !== action.payload.id);
-            });
+                state.status = 'succeeded'
+                state.users = state.users.filter (user => user.id !== action.payload);
+            })
+            .addCase(deleteUser.rejected,(state,action) => {
+                state.status = 'failed';
+                state.error = action.payload;
+            })
+            ;
     },
 });
 
 export const  { reset } = adminSlice.actions;
 export default adminSlice.reducer;
+
+
+ 
