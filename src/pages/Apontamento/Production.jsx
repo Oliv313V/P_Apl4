@@ -58,8 +58,7 @@ const Production = () => {
             }
 
             await productionService.fetchProduction();
-        } catch (error) {
-            console.error("Erro ao registrar ou atualizar produção:", error);
+        } catch (error) {            
             setError(error.message);
         } finally {
             setLoading(false);
