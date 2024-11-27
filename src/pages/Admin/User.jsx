@@ -1,9 +1,8 @@
 import {useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers, reset } from "../../slices/adminSlice.jsx";
-//import Navbar from "../../components/Navbar.jsx";
 
-import '.User.css'; // alterado por Gilson
+import './User.css'; // alterado por Gilson
 
 const UserList = () => {
     const dispatch = useDispatch();

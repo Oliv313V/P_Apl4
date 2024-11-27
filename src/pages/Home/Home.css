@@ -1,23 +1,63 @@
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #282C34, #686275, #8F7F96, #E7BAD1);
+    color: #F5F9FF;
+    margin: 0; /* Remove qualquer margem padrão */
+    padding: 0; /* Remove qualquer padding padrão */
+
+}
+
+
 .home-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Ocupa toda a altura da tela */
     text-align: center;
-    background: #282C34;
-    color: #F5F9FF; /* Texto claro */
+    color: #F5F9FF;
+    background: rgba(40, 44, 52, 0.9);
+    border-radius: 10px;
+    padding: 7rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    width: auto; /* Ajusta a largura ao conteúdo */
+    max-width: 600px; /* Define um tamanho máximo para o container */
+    margin: 3rem auto 0; /* Centraliza o .home-container e cria um espaço de 3rem acima dele */
+    height: 30vh; /* Garante que o .home-container ocupe a altura total da tela */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o conteúdo dentro do container */
 }
 
-.home-container h1 {
-    margin-bottom: 1rem;
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .home-container {
+        width: 90%; /* Deixa o container ocupar 90% da largura em telas menores */
+        max-width: 600px; /* Define um tamanho máximo menor */
+        padding: 1rem; /* Reduz o padding em telas menores */
+    }
+
+    .home-container h1 {
+        font-size: 1.5rem; /* Ajusta o tamanho do título */
+    }
+
+    .home-container li {
+        font-size: 0.9rem; /* Ajusta o tamanho da lista em telas pequenas */
+    }
 }
 
-.home-container ul {
-    list-style: none;
-    padding: 0;
-}
+@media (max-width: 480px) {
+    .home-container {
+        width: 100%; /* Remove a largura máxima em telas muito pequenas */
+        padding: 0.5rem; /* Reduz ainda mais o padding */
+    }
 
-.home-container li {
-    margin: 0.5rem 0;
+    .home-container h1 {
+        font-size: 1.2rem; /* Diminui o tamanho do título em telas muito pequenas */
+    }
+
+    .home-container li {
+        font-size: 0.8rem; /* Diminui ainda mais o tamanho da lista */
+    }
 }

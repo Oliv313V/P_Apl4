@@ -1,94 +1,109 @@
 #gerenciar {
     padding: 1rem;
-    background-color: rgba(228, 228, 228, 0.9);
-    border-radius: 0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    color: #282C34; /* Texto escuro */
-    min-height: 100vh; /* Garante que o contêiner cubra toda a altura da tela */
-    display: flex; /* Usar flexbox para o layout */
-    flex-direction: column; /* Organizar os itens verticalmente */
+    background-color: rgba(40, 44, 52, 0.9); /* Cor de fundo ajustada */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombras para profundidade */
+    color: #F5F9FF; /* Cor do texto clara */
+    min-height: 100vh; /* Garante que o contêiner ocupe toda a altura da tela */
+    display: flex; /* Flexbox para layout */
+    flex-direction: column; /* Organiza os itens verticalmente */
     justify-content: flex-start; /* Inicia o conteúdo no topo */
     align-items: center; /* Centraliza os itens horizontalmente */
-    position: relative;
+    background: linear-gradient(135deg, #282C34, #686275, #8F7F96, #E7BAD1); /* Gradiente de fundo */
 }
 
-.form-container {
+.formulario-cadastro {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 600px; /* Limita a largura do formulário */
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: rgba(40, 44, 52, 0.9); /* Fundo do formulário */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra para o formulário */
+    color: #F5F9FF; /* Cor do texto */
+}
+
+.formulario-cadastro h2 {
+    text-align: center;
+    color: #F5F9FF; /* Título em branco */
+}
+
+.formulario-cadastro .subtitle {
+    text-align: center;
+    color: #F5F9FF;
+}
+
+.formulario-cadastro .form-group {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-#gerenciar h2 {
-    color: #282C34; /* Cor para o h2 dentro do gerenciar */
-    text-align: left;
-    margin-bottom: 2rem;
-}
-
-.users-container h3 {
-    text-align: left;
-    margin-top: 2rem; /* Ajuste este valor conforme necessário */
-    margin-bottom: 2.5rem; /* Mantém o espaço abaixo do h3 */
-}
-
-.subtitle {
-    text-align: left;
-    margin-bottom: 1rem;
-    color: #282C34; /* Cor para o subtítulo */
-}
-
-.form-group {
+.formulario-cadastro form {
     display: flex;
     flex-direction: column;
-    gap: 1rem; /* Espaçamento entre os inputs */
+    gap: 1rem;
 }
 
-.form-group {
-    display: flex; /* Usar flexbox para alinhamento */
-    flex-direction: column; /* Organiza os itens verticalmente */
-    gap: 1rem; /* Espaçamento entre os itens */
-    width: 100%; /* Faz a div ocupar toda a largura disponível */
-}
-
-.form-group input {
-    width: 400px; /* Garante que todos os inputs tenham a mesma largura */
-    padding: 0.75rem; /* Padding padrão */
-    border: 1px solid #BA9CB5; /* Borda */
-    border-radius: 5px; /* Bordas arredondadas */
-    background: rgba(255, 255, 255, 0.1); /* Fundo claro */
-    color: #282C34; /* Cor do texto */
-}
-
-input[type="text"]::placeholder,
-input[type="password"]::placeholder {
-    color: rgba(68, 68, 68, 0.7);
-    opacity: 1; /* Garante que a opacidade do placeholder seja total */
-}
-
-input[type="text"],
-input[type="password"] {
+.formulario-cadastro input[type="text"],
+.formulario-cadastro input[type="password"] {
     padding: 0.75rem;
     border: 1px solid #BA9CB5;
     border-radius: 5px;
-    background: rgba(255, 255, 255, 0.1);
-    margin-right: 60%;
-    color: #282C34;
+    background: rgba(255, 255, 255, 0.1); /* Fundo claro */
+    color: #F5F9FF; /* Cor do texto */
+    width: 100%;
 }
 
-#gerenciar input[type="submit"] {
+
+
+.formulario-cadastro label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.formulario-cadastro button {
+    background: transparent;
+    border: none;
+    color: #F5F9FF;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.formulario-cadastro button:hover {
+    color: #BA9CB5; /* Efeito hover no ícone */
+}
+
+.formulario-cadastro input[type="submit"] {
     padding: 0.75rem;
-    color: black;
+    color: #F5F9FF;
     background-color: #8F7F96;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-right: 60%;
-    transition: background-color 0.6s;
     font-weight: bold;
-    font-size: 1.2rem;
+    transition: background-color 0.3s;
+    width: 100%;
 }
 
-#gerenciar input[type="submit"]:hover {
+.formulario-cadastro input[type="submit"]:hover {
     background-color: #BA9CB5; /* Efeito hover */
+}
+
+.users-container {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 600px;
+    color: #F5F9FF;
+}
+
+.users-container h3 {
+    text-align: left;
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 ul {
@@ -106,7 +121,7 @@ li {
 }
 
 button {
-    background-color: #d9534f; /* Cor para botões de excluir */
+    background-color: #d9534f;
     color: white;
     border: none;
     border-radius: 5px;
@@ -116,13 +131,39 @@ button {
 }
 
 button:hover {
-    background-color: #c9302c; /* Efeito hover para excluir */
+    background-color: #c9302c;
 }
 
-.message {
-    margin: 1rem 0;
-    padding: 0.5rem;
-    border-radius: 5px;
-    background-color: rgba(255, 0, 0, 0.1); /* Fundo para mensagens de erro */
-    color: #FF3D3D; /* Cor do texto da mensagem */
+@media (max-width: 768px) {
+    #gerenciar {
+        padding: 1rem;
+    }
+
+    .formulario-cadastro {
+        padding: 1rem;
+    }
+
+    .formulario-cadastro input[type="text"],
+    .formulario-cadastro input[type="submit"] {
+        width: 100%; /* Ajusta a largura para 100% em telas menores */
+    }
+
+    .users-container {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    #gerenciar {
+        padding: 0.5rem;
+    }
+
+    .formulario-cadastro {
+        padding: 0.5rem;
+    }
+
+    .formulario-cadastro input[type="text"],
+    .formulario-cadastro input[type="submit"] {
+        width: 100%;
+    }
 }

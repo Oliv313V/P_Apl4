@@ -339,6 +339,7 @@ const Production = () => {
                     {reports.length > 0 ? (
                         <ProductionChart data={reports} />
                     ) : (
+                        
                         <p>Não há dados de produção disponíveis!</p>
                     )}
                 </div>

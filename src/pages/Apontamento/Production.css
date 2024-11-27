@@ -1,142 +1,190 @@
 #manage-production {
-    padding: 1rem;
-    background-color: rgba(228, 228, 228, 0.9);
-    border-radius: 0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    color: #282C34; /* Texto escuro */
-    min-height: 100vh; /* Garante que o contêiner cubra toda a altura da tela */
-    display: flex; /* Usar flexbox para o layout */
-    flex-direction: column; /* Organizar os itens verticalmente */
-    justify-content: flex-start; /* Inicia o conteúdo no topo */
-    align-items: center; /* Centraliza os itens horizontalmente */
-    position: relative;
+    padding: 2rem;
+    background-color: rgba(40, 44, 52, 0.9); /* Cor de fundo suavizada */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra para profundidade */
+    color: #F5F9FF; /* Texto claro */
+    min-height: 100vh; /* Garante que o contêiner ocupe toda a altura */
+    display: flex; /* Flexbox para layout */
+    flex-direction: column; /* Organiza os itens verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    background: linear-gradient(135deg, #282C34, #686275, #8F7F96, #E7BAD1); /* Gradiente de fundo */
 }
 
 .production-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    margin: 0 auto;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: rgba(40, 44, 52, 0.9);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    color: #F5F9FF;
 }
 
-#manage-production h2 {
-    color: #282C34; /* Cor para o h2 dentro do gerenciar */
-    text-align: left;
-    margin-bottom: 2rem;
+.production-container h2 {
+    text-align: center;
+    color: #F5F9FF;
 }
 
 .production-subtitle {
-    text-align: left;
-    margin-bottom: 1rem;
-    color: #282C34; /* Cor para o subtítulo */
+    text-align: center;
+    color: #F5F9FF;
 }
 
-.report-container {
-    margin: 20px;
-    font-family: Roboto, sans-serif;
-}
-
-.reportsIn-container h3 {
-    text-align: left;
-    margin-top: 2rem; /* Ajuste este valor conforme necessário */
-    margin-bottom: 2.5rem; /* Mantém o espaço abaixo do h3 */
-}
-
-form {
+.production-container form {
     display: flex;
     flex-direction: column;
-    gap: 1rem; /* Espaçamento entre os inputs */
+    gap: 1.5rem;
 }
 
-label {
-    text-align: left;
-    color: #282C34; /* Cor do texto do label */
+.production-container label {
+    color: #F5F9FF;
+    font-weight: bold;
 }
 
-textarea, select {
+.production-container input[type="number"],
+.production-container input[type="datetime-local"],
+.production-container input[type="date"],
+.production-container select,
+.production-container textarea {
     padding: 0.75rem;
-    border: 1px solid #BA9CB5;
     border-radius: 5px;
-    background: rgba(255, 255, 255, 0.1);
-    color: #282C34;
-    width: 400px; /* Garante que todos os inputs tenham a mesma largura */
-}
-
-input[type="text"],
-input[type="number"],
-input[type="date"],
-input[type="datetime-local"] {
-    padding: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #F5F9FF;
     border: 1px solid #BA9CB5;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.1);
-    color: #282C34;
-    width: 400px; /* Garante que todos os inputs tenham a mesma largura */
+    width: 100%;
 }
 
-#manage-production button[type="submit"] {
+.production-container textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.production-container button {
     padding: 0.75rem;
-    color: black;
+    color: #F5F9FF;
     background-color: #8F7F96;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 400px; /* Largura do botão */
-    transition: background-color 0.6s;
     font-weight: bold;
-    font-size: 1.2rem;
+    transition: background-color 0.3s;
+    width: 100%;
 }
 
-#manage-production button[type="submit"]:hover {
-    background-color: #BA9CB5; /* Efeito hover */
+.production-container button:hover {
+    background-color: #BA9CB5;
 }
 
-ul {
-    list-style-type: none; /* Remove marcadores de lista */
-    padding: 0;
+#report {
+    margin-top: 1.5rem;
+    text-align: center;
 }
 
-li {
-    display: flex;
-    justify-content: space-between; /* Distribui espaço entre o nome e os botões */
-    padding: 0.5rem;
-    margin: 0.5rem 0;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-    width: 400px; /* Garante que todos os itens da lista tenham a mesma largura */
-}
-
-button {
-    background-color: #d9534f; /* Cor para botões de excluir */
+#report button {
+    background-color: #d9534f;
     color: white;
-    border: none;
+    padding: 1rem 2rem;
     border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+#report button:hover {
+    background-color: #c9302c;
+}
+
+.reportsIn-container {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.reportsIn-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.reportsIn-container th,
+.reportsIn-container td {
+    padding: 1rem;
+    text-align: left;
+    border: 1px solid #BA9CB5;
+}
+
+.reportsIn-container th {
+    background-color: #8F7F96;
+}
+
+.reportsIn-container tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.reportsIn-container tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.reportsIn-container button {
+    background-color: #d9534f;
+    color: white;
     padding: 0.5rem 1rem;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: #c9302c; /* Efeito hover para excluir */
-}
-
-.message {
-    margin: 1rem 0;
-    padding: 0.5rem;
-    border-radius: 5px;
-    background-color: rgba(255, 0, 0, 0.1); /* Fundo para mensagens de erro */
-    color: #FF3D3D; /* Cor do texto da mensagem */
+.reportsIn-container button:hover {
+    background-color: #c9302c;
 }
 
 .production-chart-container {
-    margin-top: 2rem; /* Espaçamento acima do gráfico */
+    margin-top: 2rem;
+    text-align: center;
+    width: 100%;
 }
 
-.table-row-even {
-    background-color: #f2f2f2; /* Cor para linhas pares */
+
+.production-chart-container h3 {
+    color: #F5F9FF;
+    margin-bottom: 1rem;
+    /* Center the chart title */
+    text-align: center;
 }
-  
-.table-row-odd {
-    background-color: #ffffff; /* Cor para linhas ímpares */
+
+
+@media (max-width: 768px) {
+    #manage-production {
+        padding: 1rem;
+    }
+
+    .production-container {
+        padding: 1rem;
+    }
+
+    .production-container form {
+        gap: 1rem;
+    }
+
+    .production-container input[type="number"],
+    .production-container input[type="datetime-local"],
+    .production-container input[type="date"],
+    .production-container select,
+    .production-container textarea {
+        width: 100%; /* Garante que os inputs ocupem toda a largura disponível */
+    }
+}
+
+@media (max-width: 480px) {
+    #manage-production {
+        padding: 0.5rem;
+    }
+
+    .production-container {
+        padding: 0.5rem;
+    }
 }

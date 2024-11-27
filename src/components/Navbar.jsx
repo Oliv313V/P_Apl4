@@ -1,84 +1,60 @@
-import "./Navbar.css";
-import logo from '../assets/images/logo_itambe.png';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { BsFillHouseDoorFill, BsFillPeopleFill, BsFillBoxFill, BsFillGearFill, BsSearch } from 'react-icons/bs';
+import { BsFillGridFill } from 'react-icons/bs'; 
+import logo from "../assets/images/logo_itambe.png";
+import './Navbar.css';
 
-//Components
-import { NavLink , Link } from "react-router-dom";
-import {
-    BsFillPeopleFill,
-    BsFillHouseDoorFill,
-    BsFillBoxFill,
-    BsFillBarChartFill,
-} from "react-icons/bs";
+function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-//Hooks
-//import { useState } from "react";
-import { useAuth } from "../hooks/useAuth";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
-//Redux
-import { logout, reset } from "../slices/authSlice.jsx";
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+  };
 
-const Navbar = () => {
-
-    const { auth } = useAuth();
-    const { user } = useSelector((state) => state.auth);
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    //const[ query, setQuery ] = useState("");
-
-    const handleLogout = () => {
-        dispatch(logout());
-        dispatch(reset());
-        navigate("/login");
-    };
-
-
-    return (
-        <nav id="nav">
-            <img src={logo}  alt="Itambé" className="logo"/>
-            <ul id="nav-links">
-                {auth ? (
-                    <>
-                        <li>
-                            <NavLink to="/" className={({isActive}) => (isActive ? 'active' : '')}>
-                                <BsFillHouseDoorFill/> Home
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/admin" className={({isActive}) => (isActive ? 'active' : '')}>
-                                <BsFillPeopleFill/> Gerenciar
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/apontamento" className={({isActive}) => (isActive ? 'active' : '')}>
-                                <BsFillBoxFill/> Produto
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/report" className={({isActive}) => (isActive ? 'active' : '')}>
-                                <BsFillBarChartFill/> Relatório
-                            </NavLink>
-                        </li>
-                        {user && (
-                            <li>
-                                <NavLink to={`/user/${user.id}`}>
-                                    <BsFillPeopleFill/> Usuário
-                                </NavLink>
-                            </li>
-                        )}
-                        <li>
-                            <span onClick={handleLogout}>Sair</span>
-                        </li>
-                    </>
-                ) : (
-                    <li id="enter">
-                        <Link to="/login">Entrar</Link>
-                    </li>
-                )}
-            </ul>
-        </nav>
-    );
-};
+  return (
+    <nav id="nav">
+      <img src={logo} alt="Itambé" className="logo" />
+      <ul id="nav-links" className={isMenuOpen ? 'active' : ''}>
+        <li>
+          <NavLink to="/home" className={({ isActive }) => (isActive ? 'active' : '')}>
+            <BsFillHouseDoorFill /> HOME
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/usuario" className={({ isActive }) => (isActive ? 'active' : '')}>
+            <BsFillPeopleFill />  GERENCIAR USUÁRIO
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/produto" className={({ isActive }) => (isActive ? 'active' : '')}>
+            <BsFillBoxFill /> PRODUTO
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/producao" className={({ isActive }) => (isActive ? 'active' : '')}>
+            <BsFillGearFill />  PRODUÇÃO
+          </NavLink>
+        </li>
+        <li>
+          <button className="search-button" onClick={toggleSearch}>
+            <BsSearch />
+          </button>
+          <div className={`search-bar ${isSearchOpen ? 'active' : ''}`}>
+            <input type="text" placeholder="Pesquisar" />
+          </div>
+        </li>
+      </ul>
+      <button className="menu-button" onClick={toggleMenu}>
+        <BsFillGridFill />
+      </button>
+    </nav>
+  );
+}
 
 export default Navbar;

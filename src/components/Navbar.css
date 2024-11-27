@@ -1,75 +1,126 @@
 #nav {
-    background-color: rgba(40, 44, 52, 0.9); /* Fundo escuro com transparência */
-    height: 60px; /* Altura fixa da navbar */
-    display: flex; /* Usar flex para alinhar conteúdos */
-    align-items: center; /* Centraliza o conteúdo verticalmente */
-    justify-content: space-between; /* Espaça os itens entre si */
-    padding: 0 2rem; /* Padding horizontal para afastar dos limites */
-}
-
-.logo {
-    width: 155px;    /* Largura da logo */
-    height: 40px;    /* Altura da logo */
-    object-fit: contain; /* Mantém a proporção da imagem */
-    margin-left: 2rem; /* Margem à esquerda, se necessário */
-    margin-right: 1rem; /* Margem à direita, se necessário */
-}
-
-
-#nav-links {
-    list-style: none; /* Remove marcadores da lista */
+    background-color: rgba(40, 44, 52, 0.9);
+    height: 60px;
     display: flex;
-    justify-content: flex-end; /* Alinha os links à direita */
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+  }
+
+  
+  
+  .logo {
+    width: 155px;
+    height: 40px;
+    object-fit: contain;
+    margin-left: 2rem;
+    margin-right: 1rem;
+  }
+  
+  #nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly; 
     padding: 0;
     margin: 0;
-    height: 100%; /* Garante que os links ocupem toda a altura da navbar */
-    align-items: center; /* Centraliza verticalmente os links */
-}
+    height: 100%;
+    align-items: center; /* Centraliza verticalmente os ícones */
+    width: 100%; /* Garante que ocupe toda a largura disponível */
+  }
+  
+  #nav-links li {
+    margin: 0; /* Remove qualquer margem adicional */
+    display: flex;
+    justify-content: center; /* Centraliza os ícones dentro do li */
+    align-items: center; /* Garante que o ícone esteja centralizado */
+  }
+  
+  #nav-links a {
+    text-decoration: none;
+    color: #F5F9FF;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: none; /* Remove the background color */
+    transition: background-color 0.3s, transform 0.2s;
+    
+  }
 
-#nav-links li {
-    margin-left: 1.5rem; /* Espaçamento entre os links */
-    margin-right: 1rem; /* Margem à direita dos links para afastar da borda */
-}
 
-#nav-links a {
-    text-decoration: none; /* Remove sublinhado */
-    color: #F5F9FF; /* Cor dos links */
-    padding: 0.5rem 1rem; /* Ajuste o espaçamento interno dos links */
-    border-radius: 5px; /* Bordas arredondadas */
-    transition: background-color 0.3s, transform 0.2s; /* Transição suave para o efeito hover */
-}
-
-/* Efeito hover nos links */
-#nav-links a:hover {
-    transform: scale(1.05); /* Leve aumento ao passar o mouse */
-}
-
-#enter {
-    #enter {
-        margin-left: 0; /* Remover margens à esquerda para alinhamento */
-    }
-}
-
-#enter a {
-    background-color: #686275; /* Cor do botão */
-    color: #F5F9FF; /* Texto claro */
-    padding: 0.5rem 1rem; /* Espaçamento interno do botão */
-    border-radius: 5px; /* Bordas arredondadas */
-    transition: background-color 0.2s; /* Transição suave */
-}
-
-/* Efeito hover no botão "Entrar" */
-#enter a:hover {
-    background-color: #8F7F96; /* Efeito hover */
-}
-
-@media (max-width: 768px) {
+  #nav-links a:hover {
+    transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
+  }
+  
+  #enter a {
+    background-color: #686275;
+    color: #F5F9FF;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+  }
+  
+  #enter a:hover {
+    background-color: #8F7F96;
+  }
+  
+  @media (max-width: 768px) {
     #nav {
-        padding: 0 1rem; /* Reduzir o padding em telas menores */
+      padding: 0 1rem; /* Reduzir o padding em telas menores */
     }
-
+  
     .logo {
-        width: 120px; /* Ajustar a largura da logo em telas menores */
-        height: auto; /* Manter a proporção */
+      width: 120px;
+      height: auto;
     }
-}
+  
+    #nav-links {
+      flex-direction: column; /* Alinha os itens verticalmente */
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: none;
+      padding: 20px;
+      text-align: center;
+      transform: translateY(-100%); /* Menu começa fora da tela */
+    }
+  
+    #nav-links.active {
+      transform: translateY(0); /* Quando o menu está ativo, ele aparece */
+    }
+  
+    .menu-button {
+      display: block;
+      cursor: pointer;
+    }
+  
+    .menu-button span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 2px;
+      background: #fff;
+    }
+  }
+  
+  /* Estilo para o botão de busca */
+  .search-bar {
+    display: none;
+    color: #F5F9FF;
+  }
+  
+  .search-bar.active {
+    display: block;
+  }
+  
+  .search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+
+  }
+  
+  
