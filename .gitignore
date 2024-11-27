@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+codigos_anteriores.txt
+login.jsx
+login.css
+auth.css

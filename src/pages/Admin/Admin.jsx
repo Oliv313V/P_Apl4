@@ -90,7 +90,7 @@ const Admin = () => {
 
         <div id="gerenciar">
             <div className="formulario-cadastro">
-                <h2>Admin - Cadastramento de usuários </h2>
+                <h2> Cadastramento de usuários </h2>
                 <p className="subtitle">{editMode ? "Editar Usuário" : "Insira credenciais para um novo usuário"}</p>
                 <div className="form-group">
                     <form onSubmit={handleSubmit}>
